@@ -17,6 +17,8 @@ class MapViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupPresenter()
+        
+        mapPresenter.fetchFeeds()
     }
     
     var feedPinAnnotations: [CustomFeedPinAnnotation] = []
@@ -65,7 +67,6 @@ extension MapViewController {
         let networkService = NetworkService()
         mapPresenter = MapPresenter(networkService: networkService)
         mapPresenter.setPresenterDelegate(mapPresenterDelegate: self)
-        mapPresenter.fetchFeeds()
     }
 }
 
