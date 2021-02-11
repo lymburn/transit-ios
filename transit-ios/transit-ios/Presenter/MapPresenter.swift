@@ -20,7 +20,9 @@ class MapPresenter {
     }
     
     func fetchFeeds() {
-        networkService.fetchFeeds(url: ApiEndpoints.feeds) { result in
+        networkService.fetchFeeds(url: ApiEndpoints.feeds) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let feeds):
                 // Convert to view models and update map
