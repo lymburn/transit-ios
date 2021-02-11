@@ -28,6 +28,7 @@ class MapPresenter {
                 self.mapPresenterDelegate?.updateFeedsOnMap(feedViewModels: feedViewModels)
                 
             case .failure(let error):
+                // Can display an error alert etc. Not included in simple scope of task
                 debugPrint("Failed to fetch or decode feeds with error: \(error)")
             }
         }
