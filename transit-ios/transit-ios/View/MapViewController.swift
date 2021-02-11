@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
         return mapView
     }()
     
-    func setFeedPins(feedViewModel: FeedViewModel) {
+    func addFeedPin(feedViewModel: FeedViewModel) {
         let latitude = feedViewModel.latitude
         let longitude = feedViewModel.longitude
         let coordinate = CLLocationCoordinate2D(latitude: latitude,
@@ -102,12 +102,12 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: MapPresenterDelegate {
     func updateFeedsOnMap(feedViewModels: [FeedViewModel]) {
         for feedViewModel in feedViewModels {
-            setFeedPins(feedViewModel: feedViewModel)
-
-            // Run on main thread to update UI
-            DispatchQueue.main.async {
-                self.updateMapView()
-            }
+            addFeedPin(feedViewModel: feedViewModel)
+        }
+        
+        // Run on main thread to update UI
+        DispatchQueue.main.async {
+            self.updateMapView()
         }
     }
 }
